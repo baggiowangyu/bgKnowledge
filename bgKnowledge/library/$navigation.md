@@ -19,7 +19,9 @@
 - [超长文档页内目录示例](?file=002-文档示范/002-超长文档页内目录示例 "超长文档页内目录示例")
 
 ##### Google开源项目
-- [翻墙拉取Chromium和WebRTC并采用Visual Studio 2017进行编译](?file=003-Google开源项目/001-翻墙拉取Chromium和WebRTC并采用Visual Studio 2017进行编译 "翻墙拉取Chromium和WebRTC并采用Visual Studio 2017进行编译")
+- **PPAPI插件框架**
+    - [PPAPI框架简介](?file=003-Google开源项目/001-PPAPI插件框架/001-PPAPI框架简介 "PPAPI框架简介")
+- [翻墙拉取Chromium和WebRTC并采用Visual Studio 2017进行编译](?file=003-Google开源项目/002-翻墙拉取Chromium和WebRTC并采用Visual Studio 2017进行编译 "翻墙拉取Chromium和WebRTC并采用Visual Studio 2017进行编译")
 
 ##### Jitamin项目管理工具使用说明
 - [项目统计分析](?file=004-Jitamin项目管理工具使用说明/001-项目统计分析 "项目统计分析")
@@ -30,3 +32,11 @@
 ##### CEF3开发
 - [CEF3项目编译过程](?file=006-CEF3开发/001-CEF3项目编译过程 "CEF3项目编译过程")
 - [Cef3私有化定制细节](?file=006-CEF3开发/002-Cef3私有化定制细节 "Cef3私有化定制细节")
+
+##### GB28181平台级联
+- [GB28181平台级联技术参数](?file=007-GB28181平台级联/001-GB28181平台级联技术参数 "GB28181平台级联技术参数")
+- [GB28181设备查询管理逻辑分析](?file=007-GB28181平台级联/002-GB28181设备查询管理逻辑分析 "GB28181设备查询管理逻辑分析")
+
+##### FFmpeg视音频技术
+- [FFmpeg实现音频转码](?file=008-FFmpeg视音频技术/101-FFmpeg实现音频转码 "FFmpeg实现音频转码")
+- [FFmpeg音频转码流程](?file=008-FFmpeg视音频技术/102-FFmpeg音频转码流程 "FFmpeg音频转码流程")
