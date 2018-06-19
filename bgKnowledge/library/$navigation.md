@@ -36,7 +36,22 @@
 ##### GB28181平台级联
 - [GB28181平台级联技术参数](?file=007-GB28181平台级联/001-GB28181平台级联技术参数 "GB28181平台级联技术参数")
 - [GB28181设备查询管理逻辑分析](?file=007-GB28181平台级联/002-GB28181设备查询管理逻辑分析 "GB28181设备查询管理逻辑分析")
+- [28181的逻辑关系](?file=007-GB28181平台级联/101-28181的逻辑关系 "28181的逻辑关系")
 
 ##### FFmpeg视音频技术
 - [FFmpeg实现音频转码](?file=008-FFmpeg视音频技术/101-FFmpeg实现音频转码 "FFmpeg实现音频转码")
 - [FFmpeg音频转码流程](?file=008-FFmpeg视音频技术/102-FFmpeg音频转码流程 "FFmpeg音频转码流程")
+- [FFmpeg视音频复用技术要点](?file=008-FFmpeg视音频技术/110-FFmpeg视音频复用技术要点 "FFmpeg视音频复用技术要点")
+
+##### 开源项目的编译方法
+- [GmSSL的编译方法](?file=009-开源项目的编译方法/001-GmSSL的编译方法 "GmSSL的编译方法")
+
+##### Apache Qpid
+- [消息中间件Apache Qpid简介，第一部分](?file=010-Apache Qpid/001-消息中间件Apache Qpid简介，第一部分 "消息中间件Apache Qpid简介，第一部分")
+- [消息中间件Apache Qpid简介，第二部分：理解 Qpid 细节及高级特性](?file=010-Apache Qpid/002-消息中间件Apache Qpid简介，第二部分：理解 Qpid 细节及高级特性 "消息中间件Apache Qpid简介，第二部分：理解 Qpid 细节及高级特性")
+
+##### CodeIgniter框架开发
+- [搭建CodeIgniter开发框架](?file=011-CodeIgniter框架开发/001-搭建CodeIgniter开发框架 "搭建CodeIgniter开发框架")
+
+##### TBLive开发
+- [功能定义以及通信协议规范](?file=901-TBLive开发/001-功能定义以及通信协议规范 "功能定义以及通信协议规范")
