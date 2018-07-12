@@ -405,3 +405,104 @@ static ServerMediaSession* createNewSMS(UsageEnvironment& env,
 	sms = ServerMediaSession::createNew(env, fileName, fileName, descStr);\
 } while(0)
 ```
+
+### 2. 视音频的解复用
+
+实际上在RTSP协议中的DESCRIBE命令的时候就应该进行视音频的解复用了，具体代码如下：
+
+```
+void RTSPServer::RTSPClientConnection
+::handleCmd_DESCRIBE(char const* urlPreSuffix, char const* urlSuffix, char const* fullRequestStr) {
+  ServerMediaSession* session = NULL;
+  char* sdpDescription = NULL;
+  char* rtspURL = NULL;
+  do {
+    char urlTotalSuffix[2*RTSP_PARAM_STRING_MAX];
+        // enough space for urlPreSuffix/urlSuffix'\0'
+    urlTotalSuffix[0] = '\0';
+    if (urlPreSuffix[0] != '\0') {
+      strcat(urlTotalSuffix, urlPreSuffix);
+      strcat(urlTotalSuffix, "/");
+    }
+    strcat(urlTotalSuffix, urlSuffix);
+
+    if (!authenticationOK("DESCRIBE", urlTotalSuffix, fullRequestStr)) break;
+
+    // We should really check that the request contains an "Accept:" #####
+    // for "application/sdp", because that's what we're sending back #####
+
+    // Begin by looking up the "ServerMediaSession" object for the specified "urlTotalSuffix":
+    session = fOurServer.lookupServerMediaSession(urlTotalSuffix);
+    if (session == NULL) {
+      handleCmd_notFound();
+      break;
+    }
+
+    // Increment the "ServerMediaSession" object's reference count, in case someone removes it
+    // while we're using it:
+    session->incrementReferenceCount();
+
+    // Then, assemble a SDP description for this session:
+    // 实际上，解复用
+    sdpDescription = session->generateSDPDescription();
+    if (sdpDescription == NULL) {
+      // This usually means that a file name that was specified for a
+      // "ServerMediaSubsession" does not exist.
+      setRTSPResponse("404 File Not Found, Or In Incorrect Format");
+      break;
+    }
+    unsigned sdpDescriptionSize = strlen(sdpDescription);
+
+    // Also, generate our RTSP URL, for the "Content-Base:" header
+    // (which is necessary to ensure that the correct URL gets used in subsequent "SETUP" requests).
+    rtspURL = fOurRTSPServer.rtspURL(session, fClientInputSocket);
+
+    snprintf((char*)fResponseBuffer, sizeof fResponseBuffer,
+	     "RTSP/1.0 200 OK\r\nCSeq: %s\r\n"
+	     "%s"
+	     "Content-Base: %s/\r\n"
+	     "Content-Type: application/sdp\r\n"
+	     "Content-Length: %d\r\n\r\n"
+	     "%s",
+	     fCurrentCSeq,
+	     dateHeader(),
+	     rtspURL,
+	     sdpDescriptionSize,
+	     sdpDescription);
+  } while (0);
+
+  if (session != NULL) {
+    // Decrement its reference count, now that we're done using it:
+    session->decrementReferenceCount();
+    if (session->referenceCount() == 0 && session->deleteWhenUnreferenced()) {
+      fOurServer.removeServerMediaSession(session);
+    }
+  }
+
+  delete[] sdpDescription;
+  delete[] rtspURL;
+}
+```
+
+这里可以观察调用堆栈的情况：
+
+【AAC】
+
+![](assets/1001/20180625-90735c5e.png)  
+
+
+在创建RTPSink的时候，最终创建了MPEG4GenericRTPSink，这里可能需要关注看看是不是所有支持的格式都创建的是这个Sink
+
+```
+RTPSink* ADTSAudioFileServerMediaSubsession
+::createNewRTPSink(Groupsock* rtpGroupsock,
+		   unsigned char rtpPayloadTypeIfDynamic,
+		   FramedSource* inputSource) {
+  ADTSAudioFileSource* adtsSource = (ADTSAudioFileSource*)inputSource;
+  return MPEG4GenericRTPSink::createNew(envir(), rtpGroupsock,
+					rtpPayloadTypeIfDynamic,
+					adtsSource->samplingFrequency(),
+					"audio", "AAC-hbr", adtsSource->configStr(),
+					adtsSource->numChannels());
+}
+```
