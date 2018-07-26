@@ -41,6 +41,7 @@
 
 ##### FFmpeg视音频技术
 - [音频基础](?file=008-FFmpeg视音频技术/001-音频基础 "音频基础")
+- [FFmpeg的时间戳](?file=008-FFmpeg视音频技术/002-FFmpeg的时间戳 "FFmpeg的时间戳")
 - [FFmpeg实现音频转码](?file=008-FFmpeg视音频技术/101-FFmpeg实现音频转码 "FFmpeg实现音频转码")
 - [FFmpeg音频转码流程](?file=008-FFmpeg视音频技术/102-FFmpeg音频转码流程 "FFmpeg音频转码流程")
 - [FFmpeg视音频复用技术要点](?file=008-FFmpeg视音频技术/110-FFmpeg视音频复用技术要点 "FFmpeg视音频复用技术要点")
