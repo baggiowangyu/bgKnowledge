@@ -45,6 +45,7 @@
 - [FFmpeg实现音频转码](?file=008-FFmpeg视音频技术/101-FFmpeg实现音频转码 "FFmpeg实现音频转码")
 - [FFmpeg音频转码流程](?file=008-FFmpeg视音频技术/102-FFmpeg音频转码流程 "FFmpeg音频转码流程")
 - [FFmpeg视音频复用技术要点](?file=008-FFmpeg视音频技术/110-FFmpeg视音频复用技术要点 "FFmpeg视音频复用技术要点")
+- [几个概念和几个公式](?file=008-FFmpeg视音频技术/999-几个概念和几个公式 "几个概念和几个公式")
 
 ##### 开源项目的编译方法
 - [GmSSL的编译方法](?file=009-开源项目的编译方法/001-GmSSL的编译方法 "GmSSL的编译方法")
